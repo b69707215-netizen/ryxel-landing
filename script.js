@@ -5,9 +5,11 @@
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
-  /* ---------- Sticky header (debounced via rAF) ---------- */
+  /* ---------- Sticky header + scroll parallax (debounced via rAF) ---------- */
   var header = $('#header');
   var toTop = $('#toTop');
+  var orbs = $$('.orb');
+  var heroGlow = $('.hero__glow');
   var ticking = false;
   function onScroll() {
     if (ticking) return;
@@ -16,6 +18,13 @@
       var y = window.scrollY;
       header.classList.toggle('scrolled', y > 8);
       if (toTop) toTop.classList.toggle('show', y > 600);
+      if (!prefersReduced && y < 900) {
+        orbs.forEach(function (o) {
+          var s = parseFloat(o.getAttribute('data-speed')) || 0;
+          o.style.translate = '0 ' + (y * s).toFixed(1) + 'px';
+        });
+        if (heroGlow) heroGlow.style.translate = '0 ' + (y * 0.12).toFixed(1) + 'px';
+      }
       ticking = false;
     });
   }
@@ -211,9 +220,17 @@
     });
   });
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal (with directional variants) ---------- */
   var revealEls = $$('.hero__copy, .hero__app, .stat, .card, .step, .shot, .section__title, .section__lead, .cta__inner');
+  var dirMap = [
+    ['.hero__copy, .section__title, .section__lead', 'reveal--left'],
+    ['.hero__app', 'reveal--right'],
+    ['.card, .shot', 'reveal--scale']
+  ];
   revealEls.forEach(function (el) { el.classList.add('reveal'); });
+  dirMap.forEach(function (pair) {
+    $$(pair[0]).forEach(function (el) { el.classList.add(pair[1]); });
+  });
 
   if (prefersReduced || !('IntersectionObserver' in window)) {
     revealEls.forEach(function (el) { el.classList.add('in'); });

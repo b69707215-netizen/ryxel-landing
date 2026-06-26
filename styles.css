@@ -342,10 +342,90 @@ button.report__btn:active { transform: scale(.96); }
 .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
 .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ===== Enhanced animations ===== */
+
+/* Floating decorative orbs (parallax via JS) */
+.orb {
+  position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+  filter: blur(46px); opacity: .5; will-change: transform;
+}
+.orb--1 { top: -60px; right: 8%; width: 320px; height: 320px;
+  background: radial-gradient(circle at 30% 30%, rgba(232,196,120,.5), transparent 70%);
+  animation: float-y 13s var(--ease) infinite; }
+.orb--2 { bottom: -80px; left: -40px; width: 260px; height: 260px;
+  background: radial-gradient(circle at 60% 40%, rgba(212,175,105,.32), transparent 70%);
+  animation: float-y 17s var(--ease) infinite reverse; }
+.hero__inner, .hero .pill, .hero__copy { position: relative; z-index: 1; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-26px) translateX(10px); }
+}
+
+/* Pulsing live dot */
+.pill__dot { animation: pulse-dot 2.2s ease-in-out infinite; }
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,196,120,.55); }
+  50% { box-shadow: 0 0 0 6px rgba(232,196,120,0); }
+}
+
+/* Hero glow breathing */
+.hero__glow { animation: breathe 7s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { opacity: .85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Feature icons: float idle + react on card hover */
+.card__icon { transition: transform .35s var(--ease), color .35s, background .35s, box-shadow .35s; }
+.card:hover .card__icon {
+  transform: translateY(-4px) rotate(-8deg) scale(1.12);
+  color: #1c1305;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-2));
+  box-shadow: 0 10px 24px rgba(212,175,105,.4);
+}
+
+/* Directional + scaled reveals */
+.reveal--left { transform: translateX(-34px); }
+.reveal--right { transform: translateX(34px); }
+.reveal--scale { transform: scale(.92); }
+.reveal--left.in, .reveal--right.in, .reveal--scale.in { transform: none; }
+
+/* Step number ring pulse when revealed */
+.step.in .step__num { animation: ring 1.6s var(--ease) .15s; }
+@keyframes ring {
+  0% { box-shadow: 0 0 0 6px var(--bg-2), 0 0 0 6px rgba(212,175,105,.5); }
+  100% { box-shadow: 0 0 0 6px var(--bg-2), 0 0 0 22px rgba(212,175,105,0); }
+}
+
+/* Chart bars: shimmer + hover lift */
+.bars i { position: relative; overflow: hidden; transition: height .8s var(--ease), filter .25s, transform .25s; transform-origin: bottom; }
+.bars i.bars--gold::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%);
+  transform: translateX(-120%); animation: shimmer 3.4s ease-in-out infinite;
+}
+.bars:hover i.bars--gold { filter: brightness(1.12); transform: scaleY(1.04); }
+@keyframes shimmer {
+  0% { transform: translateX(-120%); }
+  55%, 100% { transform: translateX(220%); }
+}
+
+/* Card / button gold shine on primary */
+.btn--primary { position: relative; overflow: hidden; }
+.btn--primary::after {
+  content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+  transform: skewX(-20deg);
+}
+.btn--primary:hover::after { animation: shine .8s var(--ease); }
+@keyframes shine { to { left: 130%; } }
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
+  .orb, .hero__glow, .pill__dot, .bars i.bars--gold::after, .btn--primary::after { animation: none !important; }
 }
 
 /* ===== Responsive ===== */
