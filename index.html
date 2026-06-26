@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RYXEL — SEO on Autopilot</title>
   <meta name="description" content="RYXEL automates every SEO routine — rank tracking, keyword gaps, content briefs, technical audits — from one clean desktop app." />
+  <meta name="theme-color" content="#0a0805" />
+  <meta property="og:title" content="RYXEL — SEO on Autopilot" />
+  <meta property="og:description" content="Automate rank tracking, keyword gaps, content briefs and technical audits from one clean desktop app." />
+  <meta property="og:type" content="website" />
+  <meta name="color-scheme" content="dark" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -24,10 +29,10 @@
         <a href="#screens">Screenshots</a>
       </nav>
       <div class="header__actions">
-        <a href="#" class="btn btn--ghost">Log in</a>
-        <a href="#" class="btn btn--primary">
+        <button type="button" class="btn btn--ghost" data-action="login">Log in</button>
+        <button type="button" class="btn btn--primary" data-action="download">
           <span class="ico">&#9783;</span> Download for Windows
-        </a>
+        </button>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -51,14 +56,14 @@
           desktop app.
         </p>
         <div class="hero__cta">
-          <a href="#" class="btn btn--primary btn--lg">
+          <button type="button" class="btn btn--primary btn--lg" data-action="download">
             <span class="ico">&#9783;</span>
             <span class="btn__stack">
               <small>FREE DOWNLOAD</small>
               Download for Windows
             </span>
-          </a>
-          <a href="#" class="btn btn--outline btn--lg">&#9673; Try Web Version</a>
+          </button>
+          <a href="#screens" class="btn btn--outline btn--lg" data-action="webversion">&#9673; Try Web Version</a>
         </div>
         <ul class="hero__notes">
           <li>Windows 10 / 11</li>
@@ -129,10 +134,10 @@
   <!-- Stats -->
   <section class="stats">
     <div class="container stats__grid">
-      <div class="stat"><b>50k+</b><span>Active Users</span></div>
-      <div class="stat"><b>120M</b><span>Keywords Tracked</span></div>
-      <div class="stat"><b>4.8&#9733;</b><span>Average Rating</span></div>
-      <div class="stat"><b>99.9%</b><span>Uptime</span></div>
+      <div class="stat"><b data-count="50" data-suffix="k+">0</b><span>Active Users</span></div>
+      <div class="stat"><b data-count="120" data-suffix="M">0</b><span>Keywords Tracked</span></div>
+      <div class="stat"><b data-count="4.8" data-decimals="1" data-suffix="&#9733;">0</b><span>Average Rating</span></div>
+      <div class="stat"><b data-count="99.9" data-decimals="1" data-suffix="%">0</b><span>Uptime</span></div>
     </div>
   </section>
 
@@ -250,19 +255,19 @@
         <figure class="shot">
           <div class="shot__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><i>Keywords</i></div>
           <div class="shot__body">
-            <div class="chips">
-              <span class="chip chip--active">All</span>
-              <span class="chip">Top 10</span>
-              <span class="chip">Improved</span>
-              <span class="chip">Drops</span>
+            <div class="chips" role="tablist">
+              <button type="button" class="chip chip--active" data-filter="all">All</button>
+              <button type="button" class="chip" data-filter="top10">Top 10</button>
+              <button type="button" class="chip" data-filter="improved">Improved</button>
+              <button type="button" class="chip" data-filter="drops">Drops</button>
             </div>
             <table class="kw-table">
               <thead><tr><th>Keyword</th><th>Vol/mo</th><th>KD</th><th>Pos</th></tr></thead>
               <tbody>
-                <tr><td>seo automation tool</td><td>8.1k</td><td>42</td><td class="gold">#2</td></tr>
-                <tr><td>rank tracker software</td><td>5.4k</td><td>38</td><td class="gold">#5</td></tr>
-                <tr><td>backlink analysis free</td><td>3.2k</td><td>55</td><td class="gold">#8</td></tr>
-                <tr><td>site audit checker</td><td>2.9k</td><td>31</td><td class="gold">#11</td></tr>
+                <tr data-pos="2" data-trend="improved"><td>seo automation tool</td><td>8.1k</td><td>42</td><td class="gold">#2</td></tr>
+                <tr data-pos="5" data-trend="improved"><td>rank tracker software</td><td>5.4k</td><td>38</td><td class="gold">#5</td></tr>
+                <tr data-pos="8" data-trend="drops"><td>backlink analysis free</td><td>3.2k</td><td>55</td><td class="gold">#8</td></tr>
+                <tr data-pos="11" data-trend="drops"><td>site audit checker</td><td>2.9k</td><td>31</td><td class="gold">#11</td></tr>
               </tbody>
             </table>
           </div>
@@ -285,10 +290,10 @@
         <figure class="shot">
           <div class="shot__bar"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span><i>Reports</i></div>
           <div class="shot__body">
-            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Monthly SEO Report — June 2026</b><small>Generated 2h ago · PDF · 12 pages</small></div><span class="report__btn">&#8595; PDF</span></div>
-            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Competitor Gap Analysis</b><small>Generated 1d ago · PDF · 8 pages</small></div><span class="report__btn">&#8595; PDF</span></div>
-            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Technical Audit Report</b><small>Scheduled weekly · Next: Mon 9:00</small></div><span class="report__btn">Edit</span></div>
-            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Backlink Profile Report</b><small>Generated 3d ago · PDF · 6 pages</small></div><span class="report__btn">&#8595; PDF</span></div>
+            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Monthly SEO Report — June 2026</b><small>Generated 2h ago · PDF · 12 pages</small></div><button type="button" class="report__btn" data-action="pdf" data-report="Monthly SEO Report">&#8595; PDF</button></div>
+            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Competitor Gap Analysis</b><small>Generated 1d ago · PDF · 8 pages</small></div><button type="button" class="report__btn" data-action="pdf" data-report="Competitor Gap Analysis">&#8595; PDF</button></div>
+            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Technical Audit Report</b><small>Scheduled weekly · Next: Mon 9:00</small></div><button type="button" class="report__btn" data-action="edit" data-report="Technical Audit Report">Edit</button></div>
+            <div class="report"><span class="report__ico">&#9635;</span><div class="report__info"><b>Backlink Profile Report</b><small>Generated 3d ago · PDF · 6 pages</small></div><button type="button" class="report__btn" data-action="pdf" data-report="Backlink Profile Report">&#8595; PDF</button></div>
           </div>
           <figcaption><b>Reports</b> — White-label PDF</figcaption>
         </figure>
@@ -302,11 +307,11 @@
       <h2>Ready to put SEO on autopilot?</h2>
       <p>Join 50,000+ marketers who stopped maintaining dashboards and started ranking.</p>
       <div class="hero__cta hero__cta--center">
-        <a href="#" class="btn btn--primary btn--lg">
+        <button type="button" class="btn btn--primary btn--lg" data-action="download">
           <span class="ico">&#9783;</span>
           <span class="btn__stack"><small>FREE DOWNLOAD</small>Download for Windows</span>
-        </a>
-        <a href="#" class="btn btn--outline btn--lg">&#9673; Try Web Version</a>
+        </button>
+        <a href="#screens" class="btn btn--outline btn--lg" data-action="webversion">&#9673; Try Web Version</a>
       </div>
     </div>
   </section>
@@ -345,13 +350,28 @@
     <div class="container footer__bottom">
       <span>© 2026 RYXEL. All rights reserved.</span>
       <div class="footer__social">
-        <a href="#" aria-label="X">&#120143;</a>
-        <a href="#" aria-label="GitHub">&#9670;</a>
-        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X" data-action="social" data-net="X">&#120143;</a>
+        <a href="#" aria-label="GitHub" data-action="social" data-net="GitHub">&#9670;</a>
+        <a href="#" aria-label="LinkedIn" data-action="social" data-net="LinkedIn">in</a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Back to top -->
+  <button type="button" class="to-top" id="toTop" aria-label="Back to top">&#8593;</button>
+
+  <!-- Toasts -->
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal__close" data-action="close-modal" aria-label="Close">&times;</button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
