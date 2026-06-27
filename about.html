@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — SEORYX</title>
+  <meta name="description" content="About SEORYX — a company built so people spend more time on themselves while our own neural network handles the SEO grind." />
+  <meta name="theme-color" content="#0a0805" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">S</span>
+        <span class="brand__name">SEO<span class="brand__name-accent">RYX</span></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+      <div class="header__actions">
+        <button type="button" class="btn btn--primary" data-action="download">
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M5 20h14"/></svg></span> Download app
+        </button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="section section--head" id="about">
+    <div class="container about__inner">
+      <span class="eyebrow">ABOUT SEORYX</span>
+      <h2 class="section__title">We give people<br />their time back</h2>
+      <p class="about__lead">SEORYX is a company built on a single belief: people should spend more time on themselves — and far less of it on repetitive work. So we build software that lets AI carry the grind while you focus on what actually matters.</p>
+      <p class="about__lead">Our software is powered by an autonomous neural network we built in-house, quietly handling the SEO work that used to eat your day. The result is simple: your time comes back to you.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container cta__inner">
+      <h2>Get your time back</h2>
+      <p>Install SEORYX and let our own neural network take care of the daily SEO work — free for 30 days, no credit card.</p>
+      <div class="hero__cta hero__cta--center">
+        <button type="button" class="btn btn--primary btn--lg" data-action="download">
+          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+          <span class="btn__stack"><small>FREE 30-DAY TRIAL</small>Download SEORYX</span>
+        </button>
+        <a href="pricing.html" class="btn btn--outline btn--lg">View plans</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="brand">
+          <span class="brand__mark">S</span>
+          <span class="brand__name">SEO<span class="brand__name-accent">RYX</span></span>
+        </a>
+        <p>Autonomous SEO — from one clean desktop app.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Product</h5>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer__col">
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 SEORYX. All rights reserved.</span>
+      <div class="footer__social">
+        <a href="#" aria-label="X" data-action="social" data-net="X">&#120143;</a>
+        <a href="#" aria-label="GitHub" data-action="social" data-net="GitHub">&#9670;</a>
+        <a href="#" aria-label="LinkedIn" data-action="social" data-net="LinkedIn">in</a>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="to-top" id="toTop" aria-label="Back to top">&#8593;</button>
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal__close" data-action="close-modal" aria-label="Close">&times;</button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
