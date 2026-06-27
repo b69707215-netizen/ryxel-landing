@@ -26,7 +26,8 @@
       <nav class="nav" id="nav">
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
-        <a href="#screens">Screenshots</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <div class="header__actions">
         <button type="button" class="btn btn--ghost" data-action="login">Log in</button>
@@ -321,6 +322,142 @@
     </div>
   </section>
 
+  <!-- Pricing -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <span class="eyebrow">PRICING</span>
+      <h2 class="section__title">Plans that scale<br />with your output</h2>
+      <p class="section__lead">
+        <strong>Assistant</strong> plans run on the local RYXEL&nbsp;1.5 Core — zero API costs.
+        <strong>Autopilot</strong> plans add the full AI brain for hands-off content and audits.
+      </p>
+
+      <div class="prices">
+        <article class="price">
+          <span class="price__tier">Solo Assistant</span>
+          <p class="price__for">For independent SEO specialists</p>
+          <div class="price__amt"><b>$150</b><span>/ mo</span></div>
+          <ul class="price__list">
+            <li>1 user, up to 7 sites in the dashboard</li>
+            <li>Autonomous Keyword Gap discovery (local RYXEL 1.5 Core)</li>
+            <li>Algorithmic intent scoring — no API spend</li>
+            <li>Limit: 10,000 keywords / month</li>
+          </ul>
+          <button type="button" class="btn btn--outline btn--lg price__cta" data-action="plan" data-plan="Solo Assistant">Get started</button>
+        </article>
+
+        <article class="price price--featured">
+          <span class="price__badge">Most popular</span>
+          <span class="price__tier">Solo Autopilot</span>
+          <p class="price__for">Maximum speed for a solo content creator</p>
+          <div class="price__amt"><b>$200</b><span>/ mo</span></div>
+          <ul class="price__list">
+            <li>Everything in Assistant + full AI brain (RYXEL 1.5 Pro)</li>
+            <li>Auto-generated SEO articles &amp; briefs via Claude 3.5 Sonnet</li>
+            <li>Smart AI flags for commercial potential</li>
+            <li>Limit: 100,000 keywords / month</li>
+          </ul>
+          <button type="button" class="btn btn--primary btn--lg price__cta" data-action="plan" data-plan="Solo Autopilot">Start free trial</button>
+        </article>
+
+        <article class="price">
+          <span class="price__tier">Team Assistant</span>
+          <p class="price__for">For growing SEO teams &amp; boutique agencies</p>
+          <div class="price__amt"><b>$350</b><span>/ mo</span></div>
+          <ul class="price__list">
+            <li>3 seats included (+$70 per extra seat)</li>
+            <li>Up to 20 sites in the dashboard</li>
+            <li>Team Activity Ledger (audit logs) — track every specialist</li>
+            <li>Limit: 10,000 keywords / mo per user</li>
+          </ul>
+          <button type="button" class="btn btn--outline btn--lg price__cta" data-action="plan" data-plan="Team Assistant">Get started</button>
+        </article>
+
+        <article class="price">
+          <span class="price__tier">Agency Autopilot</span>
+          <p class="price__for">The ultimate machine for enterprise agencies</p>
+          <div class="price__amt"><b>$500</b><span>/ mo</span></div>
+          <ul class="price__list">
+            <li>3 seats included (+$150 per extra seat) + unlimited sites</li>
+            <li>Zero-Touch mode: auto bug discovery + auto content</li>
+            <li>Priority queue for background core.async workers</li>
+            <li>Full remote-team control (online status, live task tracking)</li>
+          </ul>
+          <button type="button" class="btn btn--outline btn--lg price__cta" data-action="plan" data-plan="Agency Autopilot">Talk to sales</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why SEORYX (comparison) -->
+  <section class="section" id="why">
+    <div class="container vs__inner">
+      <span class="eyebrow">SEORYX vs OTHERS</span>
+      <h2 class="section__title">Why teams switch<br />to the Hybrid Edge</h2>
+      <p class="section__lead">Most tools are thin AI wrappers that bill you for every token and ship your data off-site. RYXEL 1.5 keeps the brain — and the data — on your machine.</p>
+
+      <div class="vs">
+        <div class="vs__head">
+          <span>Feature</span>
+          <span>Generic AI wrappers (SaaS)</span>
+          <span class="vs__us">RYXEL 1.5 (Hybrid Edge)</span>
+        </div>
+        <div class="vs__row">
+          <span class="vs__feat">Where does your data go?</span>
+          <span class="vs__bad">Sent to third-party servers</span>
+          <span class="vs__good">Stays local on your PC <i>&#128274;</i></span>
+        </div>
+        <div class="vs__row">
+          <span class="vs__feat">API-key dependency</span>
+          <span class="vs__bad">Burns thousands of $ on tokens</span>
+          <span class="vs__good">Own autonomous math core <i>&#129504;</i></span>
+        </div>
+        <div class="vs__row">
+          <span class="vs__feat">Team control</span>
+          <span class="vs__bad">None — just a shared account</span>
+          <span class="vs__good">Chief panel: see who's online &amp; doing what <i>&#128101;</i></span>
+        </div>
+        <div class="vs__row">
+          <span class="vs__feat">Analysis speed</span>
+          <span class="vs__bad">Slow — waits in the AI queue</span>
+          <span class="vs__good">Instant — local compute + core.async <i>&#9889;</i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section__title">Questions,<br />answered</h2>
+
+      <div class="faq">
+        <div class="faq__item">
+          <button type="button" class="faq__q" data-action="faq" aria-expanded="false">
+            Do I need to pay for OpenAI / Anthropic API keys?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a"><p>No! On Assistant plans, our built-in mathematical RYXEL 1.5 Core runs linguistic analysis, intent scoring and technical site audits fully autonomously — right on your device.</p></div>
+        </div>
+        <div class="faq__item">
+          <button type="button" class="faq__q" data-action="faq" aria-expanded="false">
+            Is our Google Search Console access safe?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a"><p>Absolutely. All OAuth tokens are encrypted on the backend with military-grade AES-256-GCM, and session data is stored locally. No one outside your team can access them.</p></div>
+        </div>
+        <div class="faq__item">
+          <button type="button" class="faq__q" data-action="faq" aria-expanded="false">
+            How does employee monitoring work on Team / Agency plans?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a"><p>The account Owner gets exclusive access to the control panel. In real time you see which specialists are online (heartbeat tracking), how many tasks they've completed today, and which processes (e.g. async parsing) are running right now.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta">
     <div class="container cta__inner">
@@ -350,8 +487,8 @@
         <h5>Product</h5>
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
-        <a href="#screens">Screenshots</a>
-        <a href="#">Pricing</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
       </div>
       <div class="footer__col">
         <h5>Company</h5>

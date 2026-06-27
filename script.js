@@ -102,7 +102,7 @@
 
   var loginHTML =
     '<h3 class="modal__title" id="modalTitle">Welcome back</h3>' +
-    '<p class="modal__sub">Log in to your RYXEL account.</p>' +
+    '<p class="modal__sub">Log in to your SEORYX account.</p>' +
     '<form class="form" data-form="login">' +
     '  <label>Email<input type="email" required placeholder="you@agency.com" /></label>' +
     '  <label>Password<input type="password" required placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" minlength="6" /></label>' +
@@ -111,10 +111,10 @@
     '</form>';
 
   var downloadHTML =
-    '<h3 class="modal__title" id="modalTitle">Download RYXEL for Windows</h3>' +
+    '<h3 class="modal__title" id="modalTitle">Download SEORYX for Windows</h3>' +
     '<p class="modal__sub">v2.0 \u00b7 64-bit \u00b7 Windows 10 / 11 \u00b7 Free 14-day trial</p>' +
     '<div class="dl">' +
-    '  <div class="dl__row"><span>RYXEL-Setup-2.0.exe</span><span class="dl__size">84 MB</span></div>' +
+    '  <div class="dl__row"><span>SEORYX-Setup-2.0.exe</span><span class="dl__size">84 MB</span></div>' +
     '  <div class="dl__bar"><i id="dlBar"></i></div>' +
     '  <div class="dl__status" id="dlStatus">Preparing download\u2026</div>' +
     '</div>' +
@@ -154,7 +154,20 @@
         break;
       case 'social':
         e.preventDefault();
-        toast('Opening RYXEL on ' + t.getAttribute('data-net') + '\u2026');
+        toast('Opening SEORYX on ' + t.getAttribute('data-net') + '\u2026');
+        break;
+      case 'plan':
+        e.preventDefault();
+        toast('Starting your ' + t.getAttribute('data-plan') + ' plan \u2014 redirecting to checkout\u2026');
+        break;
+      case 'faq':
+        e.preventDefault();
+        var item = t.closest('.faq__item');
+        if (item) {
+          var wasOpen = item.classList.contains('open');
+          $$('.faq__item.open').forEach(function (o) { o.classList.remove('open'); o.querySelector('.faq__q').setAttribute('aria-expanded', 'false'); });
+          if (!wasOpen) { item.classList.add('open'); t.setAttribute('aria-expanded', 'true'); }
+        }
         break;
       case 'close-modal':
         e.preventDefault();
@@ -176,7 +189,7 @@
       status.textContent = 'Downloading\u2026 ' + Math.round(p) + '%';
       if (p >= 100) {
         clearInterval(iv);
-        status.textContent = 'Done \u2014 RYXEL-Setup-2.0.exe ready';
+        status.textContent = 'Done \u2014 SEORYX-Setup-2.0.exe ready';
         btn.disabled = false;
         btn.textContent = 'Download again';
         setTimeout(closeModal, 1100);
@@ -221,11 +234,11 @@
   });
 
   /* ---------- Scroll reveal (with directional variants) ---------- */
-  var revealEls = $$('.hero__copy, .hero__app, .stat, .card, .step, .shot, .section__title, .section__lead, .cta__inner');
+  var revealEls = $$('.hero__copy, .hero__app, .stat, .card, .step, .shot, .price, .vs__inner, .faq__item, .section__title, .section__lead, .cta__inner');
   var dirMap = [
     ['.hero__copy, .section__title, .section__lead', 'reveal--left'],
     ['.hero__app', 'reveal--right'],
-    ['.card, .shot', 'reveal--scale']
+    ['.card, .shot, .price', 'reveal--scale']
   ];
   revealEls.forEach(function (el) { el.classList.add('reveal'); });
   dirMap.forEach(function (pair) {
