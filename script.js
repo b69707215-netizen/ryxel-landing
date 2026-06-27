@@ -306,4 +306,81 @@
     });
     hero.addEventListener('mouseleave', function () { app.style.transform = ''; });
   }
+
+  /* ---------- Animated node-network background (hero) ---------- */
+  var canvas = $('#netbg');
+  if (canvas && canvas.getContext && !prefersReduced) {
+    var ctx = canvas.getContext('2d');
+    var heroEl = $('.hero');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var nodes = [];
+    var mouse = { x: -9999, y: -9999 };
+    var w = 0, h = 0;
+
+    function resize() {
+      var r = heroEl.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var count = Math.max(26, Math.min(60, Math.round(w * h / 26000)));
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
+        });
+      }
+    }
+
+    function step() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      for (var a = 0; a < nodes.length; a++) {
+        for (var b = a + 1; b < nodes.length; b++) {
+          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+          var dist = dx * dx + dy * dy;
+          if (dist < 18000) {
+            var o = (1 - dist / 18000) * 0.5;
+            ctx.strokeStyle = 'rgba(212,175,105,' + o.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[a].x, nodes[a].y);
+            ctx.lineTo(nodes[b].x, nodes[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < nodes.length; k++) {
+        var p = nodes[k];
+        var mdx = p.x - mouse.x, mdy = p.y - mouse.y;
+        var near = (mdx * mdx + mdy * mdy) < 14000;
+        ctx.beginPath();
+        ctx.fillStyle = near ? 'rgba(232,196,120,.95)' : 'rgba(212,175,105,.6)';
+        ctx.arc(p.x, p.y, near ? 2.6 : 1.6, 0, Math.PI * 2);
+        ctx.fill();
+        if (near) {
+          ctx.strokeStyle = 'rgba(232,196,120,' + (1 - (mdx * mdx + mdy * mdy) / 14000).toFixed(3) + ')';
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+        }
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    var raf;
+    heroEl.addEventListener('mousemove', function (e) {
+      var r = heroEl.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+    heroEl.addEventListener('mouseleave', function () { mouse.x = mouse.y = -9999; });
+    var rt;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(resize, 200); }, { passive: true });
+    resize();
+    step();
+  }
 })();
