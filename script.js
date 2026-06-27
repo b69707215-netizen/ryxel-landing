@@ -100,25 +100,25 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  var loginHTML =
-    '<h3 class="modal__title" id="modalTitle">Welcome back</h3>' +
-    '<p class="modal__sub">Log in to your SEORYX account.</p>' +
-    '<form class="form" data-form="login">' +
-    '  <label>Email<input type="email" required placeholder="you@agency.com" /></label>' +
-    '  <label>Password<input type="password" required placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" minlength="6" /></label>' +
-    '  <button type="submit" class="btn btn--primary btn--lg form__submit">Log in</button>' +
-    '  <p class="form__alt">No account? <a href="#" data-action="download-link">Download &amp; start free trial</a></p>' +
-    '</form>';
-
   var downloadHTML =
-    '<h3 class="modal__title" id="modalTitle">Download SEORYX for Windows</h3>' +
-    '<p class="modal__sub">v2.0 \u00b7 64-bit \u00b7 Windows 10 / 11 \u00b7 Free 30-day trial</p>' +
-    '<div class="dl">' +
-    '  <div class="dl__row"><span>SEORYX-Setup-2.0.exe</span><span class="dl__size">84 MB</span></div>' +
-    '  <div class="dl__bar"><i id="dlBar"></i></div>' +
-    '  <div class="dl__status" id="dlStatus">Preparing download\u2026</div>' +
-    '</div>' +
-    '<button type="button" class="btn btn--primary btn--lg form__submit" data-action="start-dl">Start download</button>';
+    '<h3 class="modal__title" id="modalTitle">Download SEORYX</h3>' +
+    '<p class="modal__sub">Native desktop app \u00b7 v2.0 \u00b7 Free 30-day trial \u00b7 No credit card</p>' +
+    '<div class="oslist">' +
+    '  <button type="button" class="osopt" data-action="dl-os" data-os="Windows" data-file="SEORYX-Setup-2.0.exe"><span class="osopt__ico">\u229e</span><span class="osopt__txt"><b>Windows</b><small>10 / 11 \u00b7 64-bit \u00b7 .exe \u00b7 84 MB</small></span><span class="osopt__arrow">\u2193</span></button>' +
+    '  <button type="button" class="osopt" data-action="dl-os" data-os="macOS" data-file="SEORYX-2.0.dmg"><span class="osopt__ico">\u2318</span><span class="osopt__txt"><b>macOS</b><small>12+ \u00b7 Apple Silicon &amp; Intel \u00b7 .dmg \u00b7 90 MB</small></span><span class="osopt__arrow">\u2193</span></button>' +
+    '  <button type="button" class="osopt" data-action="dl-os" data-os="Linux" data-file="SEORYX-2.0.AppImage"><span class="osopt__ico">\u25b8</span><span class="osopt__txt"><b>Linux</b><small>AppImage \u00b7 x86_64 \u00b7 88 MB</small></span><span class="osopt__arrow">\u2193</span></button>' +
+    '</div>';
+
+  function downloadProgressHTML(os, file) {
+    return '<h3 class="modal__title" id="modalTitle">Downloading SEORYX for ' + os + '</h3>' +
+      '<p class="modal__sub">Free 30-day trial \u00b7 No credit card</p>' +
+      '<div class="dl">' +
+      '  <div class="dl__row"><span>' + file + '</span><span class="dl__size">v2.0</span></div>' +
+      '  <div class="dl__bar"><i id="dlBar"></i></div>' +
+      '  <div class="dl__status" id="dlStatus">Preparing download\u2026</div>' +
+      '</div>' +
+      '<button type="button" class="btn btn--primary btn--lg form__submit" data-action="start-dl" data-file="' + file + '">Start download</button>';
+  }
 
   /* ---------- Global click delegation for actions ---------- */
   document.addEventListener('click', function (e) {
@@ -128,21 +128,18 @@
 
     switch (action) {
       case 'download':
-      case 'download-link':
         e.preventDefault();
         openModal(downloadHTML);
+        break;
+      case 'dl-os':
+        e.preventDefault();
+        modalBody.innerHTML = downloadProgressHTML(t.getAttribute('data-os'), t.getAttribute('data-file'));
+        var sb = modalBody.querySelector('button');
+        if (sb) sb.focus();
         break;
       case 'start-dl':
         e.preventDefault();
         simulateDownload(t);
-        break;
-      case 'login':
-        e.preventDefault();
-        openModal(loginHTML);
-        break;
-      case 'webversion':
-        // anchor handles scroll; just notify
-        toast('Loading the web version preview\u2026');
         break;
       case 'pdf':
         e.preventDefault();
@@ -179,6 +176,7 @@
   function simulateDownload(btn) {
     var bar = $('#dlBar');
     var status = $('#dlStatus');
+    var file = btn.getAttribute('data-file') || 'SEORYX-2.0';
     if (!bar) return;
     btn.disabled = true;
     var p = 0;
@@ -189,7 +187,7 @@
       status.textContent = 'Downloading\u2026 ' + Math.round(p) + '%';
       if (p >= 100) {
         clearInterval(iv);
-        status.textContent = 'Done \u2014 SEORYX-Setup-2.0.exe ready';
+        status.textContent = 'Done \u2014 ' + file + ' ready';
         btn.disabled = false;
         btn.textContent = 'Download again';
         setTimeout(closeModal, 1100);
@@ -197,20 +195,6 @@
       }
     }, 320);
   }
-
-  /* ---------- Login form submit ---------- */
-  document.addEventListener('submit', function (e) {
-    var form = e.target.closest('[data-form="login"]');
-    if (!form) return;
-    e.preventDefault();
-    var btn = form.querySelector('.form__submit');
-    btn.disabled = true;
-    btn.textContent = 'Signing in\u2026';
-    setTimeout(function () {
-      closeModal();
-      toast('Signed in successfully. Welcome back!');
-    }, 900);
-  });
 
   /* ---------- Keyword filter chips ---------- */
   var chips = $$('.chip[data-filter]');

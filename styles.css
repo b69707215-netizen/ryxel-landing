@@ -612,6 +612,21 @@ button.report__btn:active { transform: scale(.96); }
   .orb, .hero__glow, .pill__dot, .bars i.bars--gold::after, .btn--primary::after { animation: none !important; }
 }
 
+/* ===== OS download chooser ===== */
+.oslist { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.osopt { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; cursor: pointer; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; color: var(--text); transition: border-color .2s, background .2s, transform .2s var(--ease); }
+.osopt:hover { border-color: var(--line-strong); background: rgba(212,175,105,.06); transform: translateY(-2px); }
+.osopt__ico { flex: none; width: 40px; height: 40px; display: grid; place-items: center; font-size: 20px; border-radius: 10px; border: 1px solid var(--line-strong); color: var(--gold-bright); }
+.osopt__txt { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.osopt__txt b { font-size: 15px; font-weight: 700; }
+.osopt__txt small { color: var(--muted-2); font-size: 11.5px; font-family: var(--mono); letter-spacing: .02em; }
+.osopt__arrow { flex: none; color: var(--gold-bright); font-size: 16px; opacity: .7; }
+
+/* ===== About ===== */
+.about__inner { max-width: 860px; }
+.about__lead { color: var(--muted); font-size: 16px; line-height: 1.75; margin-top: 18px; max-width: 760px; }
+.about__lead strong { color: var(--text); }
+
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .nav, .header__actions { display: none; }
