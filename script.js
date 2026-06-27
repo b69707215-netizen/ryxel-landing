@@ -383,4 +383,61 @@
     resize();
     step();
   }
+
+  /* ---------- Rotating dotted globe (SEORYX planet) ---------- */
+  var globe = $('#globe');
+  if (globe && globe.getContext) {
+    var gx = globe.getContext('2d');
+    var gdpr = Math.min(window.devicePixelRatio || 1, 2);
+    var N = 620, tilt = -0.42, ang = 0;
+    var pts = [];
+    for (var i = 0; i < N; i++) {
+      var y = 1 - (i / (N - 1)) * 2;          // 1 .. -1
+      var rad = Math.sqrt(1 - y * y);
+      var theta = i * 2.399963229728653;       // golden angle
+      pts.push({ x: Math.cos(theta) * rad, y: y, z: Math.sin(theta) * rad });
+    }
+    var gs = 0;
+    function gResize() {
+      gs = globe.clientWidth;
+      globe.width = gs * gdpr; globe.height = gs * gdpr;
+      gx.setTransform(gdpr, 0, 0, gdpr, 0, 0);
+    }
+    function gDraw() {
+      var c = gs / 2, R = gs * 0.34;
+      gx.clearRect(0, 0, gs, gs);
+      var ca = Math.cos(ang), sa = Math.sin(ang), ct = Math.cos(tilt), st = Math.sin(tilt);
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        var x1 = p.x * ca - p.z * sa;
+        var z1 = p.x * sa + p.z * ca;
+        var y2 = p.y * ct - z1 * st;
+        var z2 = p.y * st + z1 * ct;
+        var depth = (z2 + 1) / 2;              // 0 back .. 1 front
+        var sx = c + x1 * R, sy = c + y2 * R;
+        var size = 0.5 + depth * 1.7;
+        var alpha = 0.12 + depth * depth * 0.78;
+        gx.beginPath();
+        gx.fillStyle = (depth > 0.55 ? 'rgba(232,196,120,' : 'rgba(212,175,105,') + alpha.toFixed(3) + ')';
+        gx.arc(sx, sy, size, 0, Math.PI * 2);
+        gx.fill();
+      }
+      // orbit satellite
+      var oa = ang * 2.2;
+      var ox = Math.cos(oa) * R * 1.32, oz = Math.sin(oa) * R * 1.32;
+      var oy = -oz * st;
+      gx.beginPath();
+      gx.fillStyle = 'rgba(255,244,214,.95)';
+      gx.arc(c + ox, c + oy, 2.4, 0, Math.PI * 2);
+      gx.fill();
+    }
+    var grt;
+    gResize();
+    window.addEventListener('resize', function () { clearTimeout(grt); grt = setTimeout(function () { gResize(); if (prefersReduced) gDraw(); }, 200); }, { passive: true });
+    if (prefersReduced) {
+      gDraw();
+    } else {
+      (function spin() { ang += 0.0022; gDraw(); requestAnimationFrame(spin); })();
+    }
+  }
 })();
