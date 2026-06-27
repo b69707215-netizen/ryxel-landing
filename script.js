@@ -112,7 +112,7 @@
 
   var downloadHTML =
     '<h3 class="modal__title" id="modalTitle">Download SEORYX for Windows</h3>' +
-    '<p class="modal__sub">v2.0 \u00b7 64-bit \u00b7 Windows 10 / 11 \u00b7 Free 14-day trial</p>' +
+    '<p class="modal__sub">v2.0 \u00b7 64-bit \u00b7 Windows 10 / 11 \u00b7 Free 30-day trial</p>' +
     '<div class="dl">' +
     '  <div class="dl__row"><span>SEORYX-Setup-2.0.exe</span><span class="dl__size">84 MB</span></div>' +
     '  <div class="dl__bar"><i id="dlBar"></i></div>' +
